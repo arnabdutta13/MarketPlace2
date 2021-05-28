@@ -1,0 +1,10 @@
+.DS_Store
+.metadata/
+RemoteSystemsTempFiles/
+.project
+.settings
+.classpath
+.gradle
+.idea
+bin
+build
