@@ -4,5 +4,6 @@ RemoteSystemsTempFiles/
 .project
 .settings
 .classpath
+.gradle
 bin
 build
