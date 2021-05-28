@@ -5,6 +5,7 @@ package com.marketplace.service;
 
 import java.util.List;
 
+import com.marketplace.data.GroupFreqCache;
 import com.marketplace.data.MarketPlaceData;
 import com.marketplace.entity.Command;
 import com.marketplace.entity.Listing;
@@ -19,9 +20,12 @@ public class CategoryServiceImpl implements ICategoryService {
 	private static CategoryServiceImpl categoryService = new CategoryServiceImpl();
 	
 	private MarketPlaceData dataService;
+
+	private GroupFreqCache cache;
 	
 	private CategoryServiceImpl() {
 		this.dataService = MarketPlaceData.getInstance();
+		this.cache = GroupFreqCache.getInstance();
 	}
 	
 	public static CategoryServiceImpl getInstance() {
@@ -112,7 +116,7 @@ public class CategoryServiceImpl implements ICategoryService {
 	 */
 	@Override
 	public String getTopCategory(String userName) throws Exception {
-		return this.dataService.getCategoryFreqDataCache().firstKey().getName();
+		return this.cache.getTop() == null ? "" : this.cache.getTop().getName();
 	}
 
 }

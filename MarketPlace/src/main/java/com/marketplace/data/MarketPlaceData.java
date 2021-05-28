@@ -3,8 +3,10 @@
  */
 package com.marketplace.data;
 
+import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.marketplace.entity.Category;
@@ -27,8 +29,6 @@ public class MarketPlaceData {
 	private Map<String, Listing> listingData = new ConcurrentHashMap<>();
 	
 	private Map<String, Category> categoryData = new ConcurrentHashMap<>();
-	
-	private TreeMap<Category, Integer> categoryFreqDataCache = new TreeMap<>();
 
 	private MarketPlaceData() {}
 	
@@ -63,14 +63,6 @@ public class MarketPlaceData {
 
 	public void setCategoryData(Map<String, Category> categoryData) {
 		this.categoryData = categoryData;
-	}
-	
-	public TreeMap<Category, Integer> getCategoryFreqDataCache() {
-		return categoryFreqDataCache;
-	}
-
-	public void setCategoryFreqDataCache(TreeMap<Category, Integer> categoryFreqDataCache) {
-		this.categoryFreqDataCache = categoryFreqDataCache;
 	}
 
 	public synchronized long getListingId() {

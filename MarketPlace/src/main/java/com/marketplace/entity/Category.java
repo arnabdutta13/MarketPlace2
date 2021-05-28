@@ -11,7 +11,7 @@ import java.util.List;
  * @author arnab
  *
  */
-public class Category implements Comparable<Category> {
+public class Category implements  Comparable<Category> {
 	
 	private String name;
 	
@@ -111,12 +111,6 @@ public class Category implements Comparable<Category> {
 
 	@Override
 	public int compareTo(Category o) {
-		//return 0 - this.count.compareTo(o.getCount());
-		if (this.name.equals(o.getName())) {
-			return 0 - this.count.compareTo(o.getCount());
-		}
-		return this.count > o.getCount() ? -1 : 1;
-
+		return this.count.compareTo(o.getCount());
 	}
-
 }

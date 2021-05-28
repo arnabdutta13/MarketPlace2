@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.marketplace.data.GroupFreqCache;
 import com.marketplace.data.MarketPlaceData;
 import com.marketplace.entity.Category;
 import com.marketplace.entity.Command;
@@ -22,9 +23,12 @@ public class ListingServiceImpl implements IListingService {
 	private static ListingServiceImpl listingService = new ListingServiceImpl();
 	
 	private MarketPlaceData dataService;
+
+	private GroupFreqCache cache;
 	
 	private ListingServiceImpl() {
 		this.dataService = MarketPlaceData.getInstance();
+		this.cache = GroupFreqCache.getInstance();
 	}
 	
 	public static ListingServiceImpl getInstance() {
@@ -101,15 +105,9 @@ public class ListingServiceImpl implements IListingService {
 			list.add(listing);
 			this.dataService.getCategoryData().put(category, new Category(category, list));
 		}
-		
-		Category cat = new Category(category, 0);
-		if (this.dataService.getCategoryFreqDataCache().containsKey(cat)) {
-			cat.setCount(this.dataService.getCategoryFreqDataCache().get(cat) + 1);
-			this.dataService.getCategoryFreqDataCache().put(cat, cat.getCount());
-		} else {
-			cat.setCount(1);
-			this.dataService.getCategoryFreqDataCache().put(cat, 1);
-		}
+
+		this.cache.addToCache(category);
+
 		return listing.getListingId() + "";
 	}
 
@@ -129,11 +127,8 @@ public class ListingServiceImpl implements IListingService {
 		
 		this.dataService.getCategoryData().get(l.getCategory()).getProducts().remove(l);
 		
-		Category cat = new Category(l.getCategory(), 0);
-		if (this.dataService.getCategoryFreqDataCache().containsKey(cat)) {
-			cat.setCount(this.dataService.getCategoryFreqDataCache().get(cat) - 1);
-			this.dataService.getCategoryFreqDataCache().put(cat, cat.getCount());
-		}
+		this.cache.removeFromCache(l.getCategory());
+
 		return "Success";
 	}
 
