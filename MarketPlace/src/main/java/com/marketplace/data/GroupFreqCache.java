@@ -34,9 +34,7 @@ public class GroupFreqCache {
             }
         }
         if (!found) {
-            if (list.size() == SIZE) {
-                list.remove(0);
-            }
+
             list.add(new Category(category, 1));
         }
         Collections.sort(list);
