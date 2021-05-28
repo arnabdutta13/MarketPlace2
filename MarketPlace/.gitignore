@@ -1,0 +1,8 @@
+.DS_Store
+.metadata/
+RemoteSystemsTempFiles/
+.project
+.settings
+.classpath
+bin
+build
