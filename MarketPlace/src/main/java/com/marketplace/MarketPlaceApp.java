@@ -60,7 +60,7 @@ public class MarketPlaceApp {
 	}
 
 	/**
-	 * Get the cpmmand and its parameters entered by user in array
+	 * Get the command and its parameters entered by user in array
 	 * @param command
 	 * @return
 	 */
