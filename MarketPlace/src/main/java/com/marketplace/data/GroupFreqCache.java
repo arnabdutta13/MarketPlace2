@@ -58,8 +58,13 @@ public class GroupFreqCache {
         Collections.sort(list);
     }
 
-    public Category getTop() {
-        return list.get(list.size() - 1);
+    public String getTop(int num) {
+        StringBuffer sb = new StringBuffer();
+        while (num > 0) {
+            sb.append(list.get(list.size() - num).toString());
+            num--;
+        }
+        return sb.toString();
     }
 
 }

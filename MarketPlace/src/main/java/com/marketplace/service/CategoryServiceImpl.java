@@ -56,7 +56,7 @@ public class CategoryServiceImpl implements ICategoryService {
 				}
 				
 			case "GET_TOP_CATEGORY":
-				return this.getTopCategory(params[1]);
+				return this.getTopCategory(params[1], 1);
 			default:
 				return null;
 		}
@@ -115,8 +115,8 @@ public class CategoryServiceImpl implements ICategoryService {
 	 * @see com.marketplace.service.ICategoryService#getTopCategory(java.lang.String)
 	 */
 	@Override
-	public String getTopCategory(String userName) throws Exception {
-		return this.cache.getTop() == null ? "" : this.cache.getTop().getName();
+	public String getTopCategory(String userName, int num) throws Exception {
+		return this.cache.getTop(num);
 	}
 
 }

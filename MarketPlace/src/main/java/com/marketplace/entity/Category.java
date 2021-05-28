@@ -113,4 +113,9 @@ public class Category implements  Comparable<Category> {
 	public int compareTo(Category o) {
 		return this.count.compareTo(o.getCount());
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

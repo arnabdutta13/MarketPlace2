@@ -26,5 +26,5 @@ public interface ICategoryService extends IMarketPlaceService {
 	 * @return
 	 * @throws Exception
 	 */
-	String getTopCategory(String userName) throws Exception;
+	String getTopCategory(String userName, int num) throws Exception;
 }
